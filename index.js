@@ -27,10 +27,9 @@ app.get("/api/:date?", function (req, res) {
 
     if (!dateParam) {
     dateObj = new Date();
-  } else if (!isNaN(dateParam)) {
-    // dateParam is a number string -> parse as number
-    dateObj = new Date(Number(dateParam));
-  } else {
+  }  else if (/^\d+$/.test(dateParam)) {
+    dateObj = new Date(parseInt(dateParam)); // Convert string to number
+  }  else {
     // dateParam is a string date -> parse as string
     dateObj = new Date(dateParam);
   }
